@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
 
 	while (jogo->running()) {
 		jogo->handleEvents();
-		SDL_Delay(250);
+		SDL_Delay(100);
 		jogo->update();
 		jogo->render();
 	}

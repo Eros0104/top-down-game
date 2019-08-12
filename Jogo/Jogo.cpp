@@ -1,5 +1,8 @@
 #include "Jogo.hpp"
 
+SDL_Texture* playerTexture;
+SDL_Rect scrR, destR;
+
 Jogo::Jogo()
 {
 }
@@ -23,8 +26,11 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 		isRunning = true;
 	}
-	else 
-		isRunning = false;	
+
+	SDL_Surface* tempSurface = IMG_Load("char.png");
+	playerTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+	SDL_FreeSurface(tempSurface);
+
 }
 
 void Jogo::handleEvents() {
@@ -50,6 +56,11 @@ void Jogo::update() {
 	if (count == 255)
 		clean();
 	count++;
+
+	destR.h = 32;
+	destR.w = 32;
+	destR.x = count;
+
 	cout << count;
 }
 
@@ -57,7 +68,7 @@ void Jogo::render() {
 	SDL_RenderClear(renderer);
 
 	SDL_SetRenderDrawColor(renderer, 55, count, 55, 255);
-
-	// aqui ficam as coisas a serem renderizadas
+	SDL_RenderCopy(renderer, playerTexture, NULL, &destR);
+	
 	SDL_RenderPresent(renderer);
 }
