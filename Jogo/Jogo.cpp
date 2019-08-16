@@ -1,7 +1,9 @@
 #include "Jogo.hpp"
+#include "TextureManager.h"
+#include "GameObject.h"
 
-SDL_Texture* playerTexture;
-SDL_Rect scrR, destR;
+GameObject* player;
+GameObject* enemy;
 
 Jogo::Jogo()
 {
@@ -15,8 +17,6 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 	
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-		//std::cout << "Subsystems Initialized..." << std::endl;
-
 		window = SDL_CreateWindow(title, ypos, xpos, width, height, flags);
 		
 		renderer = SDL_CreateRenderer(window, -1, 0);
@@ -27,10 +27,8 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 		isRunning = true;
 	}
 
-	SDL_Surface* tempSurface = IMG_Load("char.png");
-	playerTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-	SDL_FreeSurface(tempSurface);
-
+	player = new GameObject("assets/char.png", renderer, 0, 0);
+	enemy = new GameObject("assets/link.png", renderer, 60, 0);
 }
 
 void Jogo::handleEvents() {
@@ -53,22 +51,13 @@ void Jogo::clean() {
 }
 
 void Jogo::update() {
-	if (count == 255)
-		clean();
-	count++;
-
-	destR.h = 32;
-	destR.w = 32;
-	destR.x = count;
-
-	cout << count;
+	player->Update();
+	enemy->Update();
 }
 
 void Jogo::render() {
 	SDL_RenderClear(renderer);
-
-	SDL_SetRenderDrawColor(renderer, 55, count, 55, 255);
-	SDL_RenderCopy(renderer, playerTexture, NULL, &destR);
-	
+	player->Render();
+	enemy->Render();
 	SDL_RenderPresent(renderer);
 }
