@@ -30,15 +30,21 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Jogo.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogo.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

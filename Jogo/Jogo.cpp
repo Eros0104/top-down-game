@@ -1,17 +1,16 @@
-#include "Jogo.hpp"
+#include "Jogo.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "Map.h"
 
 GameObject* player;
 GameObject* enemy;
+SDL_Renderer* Jogo::renderer = nullptr;
+Map* map;
 
-Jogo::Jogo()
-{
-}
+Jogo::Jogo(){}
 
-Jogo::~Jogo()
-{
-}
+Jogo::~Jogo(){}
 
 void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen){
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
@@ -27,8 +26,9 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 		isRunning = true;
 	}
 
-	player = new GameObject("assets/char.png", renderer, 0, 0);
-	enemy = new GameObject("assets/link.png", renderer, 60, 0);
+	player = new GameObject("assets/char.png", 0, 0);
+	enemy = new GameObject("assets/link.png", 60, 0);
+	map = new Map();
 }
 
 void Jogo::handleEvents() {
@@ -57,6 +57,7 @@ void Jogo::update() {
 
 void Jogo::render() {
 	SDL_RenderClear(renderer);
+	map->DrawMap();
 	player->Render();
 	enemy->Render();
 	SDL_RenderPresent(renderer);
