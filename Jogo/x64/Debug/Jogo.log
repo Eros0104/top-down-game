@@ -1,2 +1,5 @@
-﻿  Map.cpp
-  Jogo.vcxproj -> D:\Jogo\x64\Debug\Jogo.exe
+﻿  Jogo.cpp
+Jogo.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Component::init(void)" (?init@Component@@UEAAXXZ)
+Jogo.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Component::update(void)" (?update@Component@@UEAAXXZ)
+Jogo.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Component::draw(void)" (?draw@Component@@UEAAXXZ)
+D:\Jogo\x64\Debug\Jogo.exe : fatal error LNK1120: 3 unresolved externals

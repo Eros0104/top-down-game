@@ -47,10 +47,11 @@
     <ClInclude Include="Jogo.h">
       <Filter>src</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="char.png">
-      <Filter>src</Filter>
-    </Image>
+    <ClInclude Include="EntityComponentSystem.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

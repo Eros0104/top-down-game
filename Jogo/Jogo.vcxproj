@@ -137,13 +137,12 @@
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="EntityComponentSystem.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="TextureManager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="char.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

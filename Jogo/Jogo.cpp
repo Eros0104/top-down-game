@@ -2,11 +2,16 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Map.h"
+#include "EntityComponentSystem.h"
+#include "Component.h"
 
 GameObject* player;
 GameObject* enemy;
 SDL_Renderer* Jogo::renderer = nullptr;
 Map* map;
+
+Manager manager;
+auto& newPlayer(manager.addEntity());
 
 Jogo::Jogo(){}
 
@@ -29,6 +34,7 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 	player = new GameObject("assets/char.png", 0, 0);
 	enemy = new GameObject("assets/link.png", 60, 0);
 	map = new Map();
+	newPlayer.addComponent<PositionComponent>();
 }
 
 void Jogo::handleEvents() {
@@ -53,6 +59,11 @@ void Jogo::clean() {
 void Jogo::update() {
 	player->Update();
 	enemy->Update();
+	manager.update();
+	std::cout
+		<< newPlayer.getComponent<PositionComponent>().x()
+		<< ", "
+		<< newPlayer.getComponent<PositionComponent>().y();
 }
 
 void Jogo::render() {
