@@ -137,8 +137,10 @@
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="EntityComponentSystem.h" />
+    <ClInclude Include="EntityComponentSystem\Components.h" />
+    <ClInclude Include="EntityComponentSystem\EntityComponentSystem.h" />
+    <ClInclude Include="EntityComponentSystem\PositionComponent.h" />
+    <ClInclude Include="EntityComponentSystem\SpriteComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Map.h" />
