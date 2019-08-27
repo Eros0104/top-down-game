@@ -12,6 +12,10 @@ private:
 public:
 	SpriteComponent() = default;
 	SpriteComponent(const char* path) {
+		setTexture(path);
+	}
+
+	void setTexture(const char* path) {
 		texture = TextureManager::LoadTexture(path);
 	}
 
