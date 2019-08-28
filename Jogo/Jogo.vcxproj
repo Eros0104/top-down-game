@@ -136,11 +136,13 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityComponentSystem\Components.h" />
     <ClInclude Include="EntityComponentSystem\EntityComponentSystem.h" />
-    <ClInclude Include="EntityComponentSystem\PositionComponent.h" />
+    <ClInclude Include="EntityComponentSystem\TransformComponent.h" />
     <ClInclude Include="EntityComponentSystem\SpriteComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Jogo.h" />

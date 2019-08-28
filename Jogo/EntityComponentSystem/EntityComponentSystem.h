@@ -102,15 +102,13 @@ public:
 		return *c;
 	}
 
-	template<typename T> T& getComponent() const
-	{
+	template<typename T> T& getComponent() const{
 		auto ptr(componentArray[getComponentTypeID<T>()]);
 		return *static_cast<T*>(ptr);
 	}
 };
 
-class Manager
-{
+class Manager{
 private:
 	std::vector<std::unique_ptr<Entity>> entities;
 	std::array<std::vector<Entity*>, maxGroups> groupedEntities;

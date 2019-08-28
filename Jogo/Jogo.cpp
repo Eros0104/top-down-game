@@ -30,7 +30,7 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	map = new Map();
 	
-	player.addComponent<PositionComponent>(100, 200);
+	player.addComponent<TransformComponent>(100, 200);
 	player.addComponent<SpriteComponent>("assets/char.png");
 }
 
@@ -56,6 +56,10 @@ void Jogo::clean() {
 void Jogo::update() {
 	manager.refresh();
 	manager.update();
+
+	player.getComponent<TransformComponent>().position.Add(Vector2D(5 , 0));
+	if (player.getComponent<TransformComponent>().position.x > 100)
+		player.getComponent<SpriteComponent>().setTexture("assets/link.png");
 }
 
 void Jogo::render() {
