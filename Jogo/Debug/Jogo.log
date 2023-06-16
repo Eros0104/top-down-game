@@ -1,0 +1,11 @@
+﻿Main.obj : error LNK2019: símbolo externo indefinido _SDL_CreateWindow referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_CreateRenderer referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_SetRenderDrawColor referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_RenderClear referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_RenderPresent referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_Delay referenciado na função _SDL_main
+Main.obj : error LNK2019: símbolo externo indefinido _SDL_Init referenciado na função _SDL_main
+MSVCRTD.lib(exe_main.obj) : error LNK2019: símbolo externo indefinido _main referenciado na função "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\dev\jogos\SDL\SDL2-2.0.10\lib\x64\SDL2.lib : warning LNK4272: o tipo de máquina da biblioteca 'x64' está em conflito com o tipo de máquina de destino 'x86'
+D:\dev\jogos\SDL\SDL2-2.0.10\lib\x64\SDL2main.lib : warning LNK4272: o tipo de máquina da biblioteca 'x64' está em conflito com o tipo de máquina de destino 'x86'
+D:\dev\jogos\Jogo\Debug\Jogo.exe : fatal error LNK1120: 8 externo não resolvidos
