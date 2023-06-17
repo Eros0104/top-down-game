@@ -1,6 +1,6 @@
-#include "Jogo.h"
+#include "Game.h"
 
-Jogo *jogo = nullptr;
+Game *game = nullptr;
 
 int WinMain(int argc, char *argv[])
 {
@@ -10,19 +10,19 @@ int WinMain(int argc, char *argv[])
 	Uint32 frameStart;
 	int frameTime;
 
-	jogo = new Jogo();
+	game = new Game();
 
-	jogo->init("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+	game->init("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-	while (jogo->running())
+	while (game->running())
 	{
 
 		frameStart = SDL_GetTicks();
 
-		jogo->handleEvents();
+		game->handleEvents();
 		SDL_Delay(100);
-		jogo->update();
-		jogo->render();
+		game->update();
+		game->render();
 
 		frameTime = SDL_GetTicks() - frameStart;
 
@@ -32,6 +32,6 @@ int WinMain(int argc, char *argv[])
 		}
 	}
 
-	jogo->clean();
+	game->clean();
 	return 0;
 }

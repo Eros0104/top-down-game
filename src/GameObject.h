@@ -1,5 +1,5 @@
 #pragma once
-#include "Jogo.h"
+#include "Game.h"
 
 class GameObject {
 public:

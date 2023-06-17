@@ -1,19 +1,19 @@
-#include "Jogo.h"
+#include "Game.h"
 #include "TextureManager.h"
 #include "Map.h"
 #include "EntityComponentSystem/Components.h"
 
-SDL_Renderer *Jogo::renderer = nullptr;
+SDL_Renderer *Game::renderer = nullptr;
 Map *map;
 Manager manager;
 
 auto &player(manager.addEntity());
 
-Jogo::Jogo() {}
+Game::Game() {}
 
-Jogo::~Jogo() {}
+Game::~Game() {}
 
-void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
+void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
 	int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
@@ -36,7 +36,7 @@ void Jogo::init(const char *title, int xpos, int ypos, int width, int height, bo
 	player.addComponent<SpriteComponent>("assets/char.png");
 }
 
-void Jogo::handleEvents()
+void Game::handleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
@@ -51,14 +51,14 @@ void Jogo::handleEvents()
 	}
 }
 
-void Jogo::clean()
+void Game::clean()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 }
 
-void Jogo::update()
+void Game::update()
 {
 	manager.refresh();
 	manager.update();
@@ -68,7 +68,7 @@ void Jogo::update()
 		player.getComponent<SpriteComponent>().setTexture("assets/player.png");
 }
 
-void Jogo::render()
+void Game::render()
 {
 	SDL_RenderClear(renderer);
 	map->DrawMap();
