@@ -2,7 +2,8 @@
 
 Jogo *jogo = nullptr;
 
-int main(int argc, char *argv[]) {
+int WinMain(int argc, char *argv[])
+{
 	const int FPS = 60;
 	const int frameDelay = 1000 / 60;
 
@@ -10,10 +11,11 @@ int main(int argc, char *argv[]) {
 	int frameTime;
 
 	jogo = new Jogo();
-	
+
 	jogo->init("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-	while (jogo->running()) {
+	while (jogo->running())
+	{
 
 		frameStart = SDL_GetTicks();
 
@@ -24,7 +26,8 @@ int main(int argc, char *argv[]) {
 
 		frameTime = SDL_GetTicks() - frameStart;
 
-		if (frameDelay > frameTime) {
+		if (frameDelay > frameTime)
+		{
 			SDL_Delay(frameDelay - frameTime);
 		}
 	}

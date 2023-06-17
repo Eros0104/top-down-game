@@ -1,15 +1,10 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Windows",
             "includePath": [
-                "/usr/include/SDL2"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+                "C:/software/msys64/mingw64/include"
+            ]
         }
     ],
     "version": 4
