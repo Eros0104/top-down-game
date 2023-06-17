@@ -5,7 +5,7 @@ Game *game = nullptr;
 int WinMain(int argc, char *argv[])
 {
 	const int FPS = 60;
-	const int frameDelay = 1000 / 60;
+	const int frameDelay = 1000 / FPS;
 
 	Uint32 frameStart;
 	int frameTime;
@@ -20,7 +20,6 @@ int WinMain(int argc, char *argv[])
 		frameStart = SDL_GetTicks();
 
 		game->handleEvents();
-		SDL_Delay(100);
 		game->update();
 		game->render();
 

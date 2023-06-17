@@ -3,10 +3,11 @@
 #include "Map.h"
 #include "EntityComponentSystem/Components.h"
 
-SDL_Renderer *Game::renderer = nullptr;
 Map *map;
 Manager manager;
 
+SDL_Renderer *Game::renderer = nullptr;
+SDL_Event Game::event;
 auto &player(manager.addEntity());
 
 Game::Game() {}
@@ -33,13 +34,14 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	map = new Map();
 
 	player.addComponent<TransformComponent>(100, 200);
-	player.addComponent<SpriteComponent>("assets/char.png");
+	player.addComponent<SpriteComponent>("assets/player.png");
+	player.addComponent<KeyboardController>();
 }
 
 void Game::handleEvents()
 {
-	SDL_Event event;
 	SDL_PollEvent(&event);
+
 	switch (event.type)
 	{
 	case SDL_QUIT:
@@ -62,10 +64,6 @@ void Game::update()
 {
 	manager.refresh();
 	manager.update();
-
-	player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
-	if (player.getComponent<TransformComponent>().position.x > 100)
-		player.getComponent<SpriteComponent>().setTexture("assets/player.png");
 }
 
 void Game::render()
