@@ -1,12 +1,12 @@
-#ifndef Game_hpp
-#define Game_hpp
+#pragma once
 
 #include <iostream>
+#include <vector>
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 
-using namespace std;
+class ColliderComponent;
 
 class Game
 {
@@ -16,19 +16,19 @@ public:
 	~Game();
 
 	void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+
 	void handleEvents();
 	void update();
+	bool running() { return isRunning; }
 	void render();
 	void clean();
 
 	static SDL_Renderer *renderer;
 	static SDL_Event event;
-
-	bool running() { return isRunning; }
+	static std::vector<ColliderComponent *> colliders;
 
 private:
-	bool isRunning;
+	bool isRunning = false;
 	SDL_Window *window;
 	int count = 0;
 };
-#endif
