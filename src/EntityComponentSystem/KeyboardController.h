@@ -18,52 +18,94 @@ public:
   {
     if (Game::event.type == SDL_KEYDOWN)
     {
-      switch (Game::event.key.keysym.sym)
-      {
-      case SDLK_w:
-        transform->velocity.y = -1;
-        break;
-
-      case SDLK_a:
-        transform->velocity.x = -1;
-        break;
-
-      case SDLK_s:
-        transform->velocity.y = 1;
-        break;
-
-      case SDLK_d:
-        transform->velocity.x = 1;
-        break;
-
-      default:
-        break;
-      }
+      handleKeyPress();
     }
-
-    if (Game::event.type == SDL_KEYUP)
+    else if (Game::event.type == SDL_KEYUP)
     {
-      switch (Game::event.key.keysym.sym)
-      {
-      case SDLK_w:
-        transform->velocity.y = 0;
-        break;
-
-      case SDLK_a:
-        transform->velocity.x = 0;
-        break;
-
-      case SDLK_s:
-        transform->velocity.y = 0;
-        break;
-
-      case SDLK_d:
-        transform->velocity.x = 0;
-        break;
-
-      default:
-        break;
-      }
+      handleKeyRelease();
     }
+  }
+
+private:
+  void handleKeyPress()
+  {
+    switch (Game::event.key.keysym.sym)
+    {
+    case SDLK_w:
+      transform->velocity.y = -1;
+      break;
+
+    case SDLK_a:
+      transform->velocity.x = -1;
+      break;
+
+    case SDLK_s:
+      transform->velocity.y = 1;
+      break;
+
+    case SDLK_d:
+      transform->velocity.x = 1;
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  void handleKeyRelease()
+  {
+    switch (Game::event.key.keysym.sym)
+    {
+    case SDLK_w:
+      transform->velocity.y = getUpdatedVelocityY();
+      break;
+
+    case SDLK_a:
+      transform->velocity.x = getUpdatedVelocityX();
+      break;
+
+    case SDLK_s:
+      transform->velocity.y = getUpdatedVelocityY();
+      break;
+
+    case SDLK_d:
+      transform->velocity.x = getUpdatedVelocityX();
+      break;
+
+    default:
+      break;
+    }
+  }
+
+  int getUpdatedVelocityX()
+  {
+    int xVelocity = 0;
+
+    if (Game::event.key.keysym.sym == SDLK_a && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_D])
+    {
+      xVelocity = 1;
+    }
+    else if (Game::event.key.keysym.sym == SDLK_d && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_A])
+    {
+      xVelocity = -1;
+    }
+
+    return xVelocity;
+  }
+
+  int getUpdatedVelocityY()
+  {
+    int yVelocity = 0;
+
+    if (Game::event.key.keysym.sym == SDLK_w && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_S])
+    {
+      yVelocity = 1;
+    }
+    else if (Game::event.key.keysym.sym == SDLK_s && SDL_GetKeyboardState(nullptr)[SDL_SCANCODE_W])
+    {
+      yVelocity = -1;
+    }
+
+    return yVelocity;
   }
 };
