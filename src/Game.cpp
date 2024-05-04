@@ -38,15 +38,15 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	map = new Map();
 
-	Map::LoadMap("assets/maps/default.map", 16, 16);
+	Map::LoadMap("../src/assets/maps/default.map", 16, 16);
 
 	player.addComponent<TransformComponent>(2);
-	player.addComponent<SpriteComponent>("assets/player.png");
+	player.addComponent<SpriteComponent>("../src/assets/player.png");
 	player.addComponent<KeyboardController>();
 	player.addComponent<ColliderComponent>("player");
 
 	wall.addComponent<TransformComponent>(300.0f, 300.0f, 160, 16, 1);
-	wall.addComponent<SpriteComponent>("assets/textures/sand.png");
+	wall.addComponent<SpriteComponent>("../src/assets/textures/sand.png");
 	wall.addComponent<ColliderComponent>("wall");
 }
 

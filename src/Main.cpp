@@ -2,7 +2,7 @@
 
 Game *game = nullptr;
 
-int WinMain(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
