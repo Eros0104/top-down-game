@@ -11,24 +11,11 @@ Before starting, you will have to install the following tools:
 ## :game_die: Getting started
 
 ```bash
-# access the project directory
 
-cd Jogo
+cmake -B build    # configure (one-time)
 
-# compile the project
+cmake --build build   # build
 
-./build.bat
-
-# run the game.exe
-
-./run.bat
-
+./bin/game        # run
 ```
 
-## :wrench: Setup the project using MinGW
-
-1. Install MinGW as the following document explains: https://code.visualstudio.com/docs/cpp/config-mingw
-
-2. Install SDL in MinGW: https://w3.cs.jmu.edu/bernstdh/web/common/help/cpp_mingw-sdl-setup.php
-
-3. Install SDL Image in MinGW (The process is the same to the SDL installation)
