@@ -1,12 +1,11 @@
 #pragma once
 
 #include "EntityComponentSystem.h"
-#include "TransformComponent.h"
-#include "SpriteComponent.h"
 #include "SDL2/SDL.h"
+#include "SpriteComponent.h"
+#include "TransformComponent.h"
 
-class TileComponent : public Component
-{
+class TileComponent : public Component {
 public:
   TransformComponent *transform;
   SpriteComponent *sprite;
@@ -17,33 +16,32 @@ public:
 
   TileComponent() = default;
 
-  TileComponent(int x, int y, int w, int h, int id)
-  {
+  TileComponent(int x, int y, int w, int h, int id) {
     tileRect.x = x;
     tileRect.y = y;
     tileRect.h = h;
     tileRect.w = w;
     tileID = id;
 
-    switch (tileID)
-    {
+    switch (tileID) {
     case 0:
-      path = "../src/assets/textures/water.png";
+      path = "../assets/textures/water.png";
       break;
     case 1:
-      path = "../src/assets/textures/sand.png";
+      path = "../assets/textures/sand.png";
       break;
     case 2:
-      path = "../src/assets/textures/grass.png";
+      path = "../assets/textures/grass.png";
       break;
     default:
       break;
     }
   }
 
-  void init() override
-  {
-    entity->addComponent<TransformComponent>((float)tileRect.x, (float)tileRect.y, (float)tileRect.w, (float)tileRect.h, 1);
+  void init() override {
+    entity->addComponent<TransformComponent>(
+        (float)tileRect.x, (float)tileRect.y, (float)tileRect.w,
+        (float)tileRect.h, 1);
     transform = &entity->getComponent<TransformComponent>();
 
     entity->addComponent<SpriteComponent>(path);
