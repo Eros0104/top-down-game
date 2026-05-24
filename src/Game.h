@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "SDL2/SDL.h"
@@ -27,6 +28,7 @@ public:
 	static SDL_Renderer *renderer;
 	static SDL_Event event;
 	static std::vector<ColliderComponent *> colliders;
+	static std::string assetPath;
 
 private:
 	bool isRunning = false;

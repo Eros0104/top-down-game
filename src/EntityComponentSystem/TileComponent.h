@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Game.h"
 #include "EntityComponentSystem.h"
 #include "SDL2/SDL.h"
 #include "SpriteComponent.h"
@@ -12,7 +13,7 @@ public:
 
   SDL_Rect tileRect;
   int tileID;
-  const char *path;
+  std::string path;
 
   TileComponent() = default;
 
@@ -25,13 +26,13 @@ public:
 
     switch (tileID) {
     case 0:
-      path = "../assets/textures/water.png";
+      path = Game::assetPath + "textures/water.png";
       break;
     case 1:
-      path = "../assets/textures/sand.png";
+      path = Game::assetPath + "textures/sand.png";
       break;
     case 2:
-      path = "../assets/textures/grass.png";
+      path = Game::assetPath + "textures/grass.png";
       break;
     default:
       break;
@@ -44,7 +45,7 @@ public:
         (float)tileRect.h, 1);
     transform = &entity->getComponent<TransformComponent>();
 
-    entity->addComponent<SpriteComponent>(path);
+    entity->addComponent<SpriteComponent>(path.c_str());
     sprite = &entity->getComponent<SpriteComponent>();
   }
 };

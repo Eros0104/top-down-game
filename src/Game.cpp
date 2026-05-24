@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "TextureManager.h"
 #include <cstddef>
+#include <unistd.h>
 
 Map *map;
 Manager manager;
@@ -12,6 +13,7 @@ SDL_Renderer *Game::renderer = nullptr;
 SDL_Event Game::event;
 
 std::vector<ColliderComponent *> Game::colliders;
+std::string Game::assetPath;
 
 auto &player(manager.addEntity());
 auto &wall(manager.addEntity());
@@ -30,6 +32,10 @@ Game::~Game() {}
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height,
                 bool fullscreen) {
+
+  char cwd[1024];
+  getcwd(cwd, sizeof(cwd));
+  std::cout << "CWD:" << cwd << std::endl;
   int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
 
   if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -40,21 +46,25 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height,
       SDL_SetRenderDrawColor(renderer, 55, 0, 55, 255);
     }
 
+    char* basePath = SDL_GetBasePath();
+    assetPath = std::string(basePath) + "../assets/";
+    SDL_free(basePath);
+
     isRunning = true;
   }
 
   map = new Map();
 
-  Map::LoadMap("../assets/maps/default.map", 16, 16);
+  Map::LoadMap(assetPath + "maps/default.map", 16, 16);
 
   player.addComponent<TransformComponent>(3);
-  player.addComponent<SpriteComponent>("../assets/player.png");
+  player.addComponent<SpriteComponent>((assetPath + "player.png").c_str());
   player.addComponent<KeyboardController>();
   player.addComponent<ColliderComponent>("player");
   player.addGroup(groupPlayers);
 
   wall.addComponent<TransformComponent>(300.0f, 300.0f, 160, 16, 1);
-  wall.addComponent<SpriteComponent>("../assets/textures/sand.png");
+  wall.addComponent<SpriteComponent>((assetPath + "textures/sand.png").c_str());
   wall.addComponent<ColliderComponent>("wall");
   wall.addGroup(groupColliders);
 }
@@ -116,6 +126,7 @@ void Game::render() {
 }
 
 void Game::AddTile(int id, int x, int y) {
+  std::cout << id << std::endl;
   auto &tile(manager.addEntity());
   tile.addComponent<TileComponent>(x, y, 32, 32, id);
   tile.addGroup(groupMap);
