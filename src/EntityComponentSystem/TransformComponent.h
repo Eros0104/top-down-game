@@ -1,6 +1,7 @@
 #pragma once
 #include "Components.h"
 #include "../Vector2D.h"
+#include <cmath>
 
 class TransformComponent : public Component
 {
@@ -48,7 +49,13 @@ public:
 
 	void update() override
 	{
-		position.x += velocity.x * speed;
-		position.y += velocity.y * speed;
+    // Normalize movement
+    double h = sqrt(pow(velocity.x, 2) + pow(velocity.y, 2));
+    if (h == 0) return;
+    double normalizedX = velocity.x / h;
+    double normalizedY = velocity.y / h;
+
+		position.x += normalizedX * speed;
+		position.y += normalizedY * speed;
 	}
 };
